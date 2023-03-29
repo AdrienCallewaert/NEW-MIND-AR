@@ -1,2 +1,0 @@
-# TRY MIND AR JS
- 
