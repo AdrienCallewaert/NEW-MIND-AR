@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const camera = new THREE.PerspectiveCamera();
     camera.position.set(1, 1, 5);
 
-    const renderer = new THREE.WebGL1Renderer();
+    const renderer = new THREE.WebGLRenderer();
     renderer.setSize(500, 500); /* unit in px */ /* unité en pixel */
     renderer.render(scene, camera);
 
