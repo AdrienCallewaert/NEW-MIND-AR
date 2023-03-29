@@ -1,5 +1,6 @@
 import * as THREE from ".. / assets / cours / applications / libs / three.js - r132 / build / three.module.js ";
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const scene = new THREE.Scene();
 
