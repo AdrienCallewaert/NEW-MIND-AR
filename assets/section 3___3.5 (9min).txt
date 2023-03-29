@@ -1,0 +1,135 @@
+voici le grand mot de la traque en continuant avec notre exemple précédent
+
+Le problème restant est que notre objet rendu n'est pas situé à un endroit raisonnable.
+
+Tout d'abord, je veux que vous sachiez que vous pouvez déplacer le cube rendu d'ici à ici ou à ici
+
+en déplaçant simplement la caméra virtuelle dans la scène
+
+Pour créer un effet AR, tout ce que nous devons faire est de mettre à jour la position et la rotation de la caméra d'une manière intéressante et continue pour chaque image.
+
+de façon intéressante et continue pour chaque image et pour y parvenir, nous nous appuyons sur le suivi.
+
+En parlant de suivi, permettez-moi d'essayer de dissiper la confusion qui règne parmi de nombreuses personnes.
+
+entendu parler de différents types d'ar comme l'ar marker based ar marketless ar location based ar superposition
+
+Je ne sais pas qui a inventé ces termes, mais à mon avis, ils sont très confus et ne fournissent aucune information utile.
+
+ne fournissent aucune information utile je pense qu'une meilleure catégorisation de l'ar est par le type de suivi
+
+le premier type d'ar est le suivi d'image, que certains appellent l'ar basé sur des marqueurs
+
+dans ce type d'ar, des objets virtuels apparaissent au-dessus des images de la cible
+
+On peut également distinguer les images de type code-barres et les images naturelles Les images de type code-barres
+
+Les images de type code-barres sont des images qui ont un modèle prédéfini, tandis que les images naturelles sont des images qui peuvent être n'importe quoi.
+
+Les applications typiques de suivi d'images comprennent les emballages de produits, les magazines, les prospectus ou les cartes de toute sorte.
+
+les dépliants ou les cartes de toute nature, comme les cartes de visite, les cartes d'invitation, mais il n'est pas limité au papier imprimé.
+
+il n'y a pas que le papier imprimé, il y a aussi d'autres applications intéressantes comme les t-shirts.
+
+un autre type d'ar commun est le suivi de visage Dans le suivi de visage, des objets augmentés sont attachés au visage humain.
+
+au visage humain si vous avez joué avec les filtres facebook instagram ils tombent dans cette catégorie
+
+ils sont couramment utilisés dans les campagnes de marketing où les utilisateurs prennent des photos et les partagent sur les médias sociaux ou en ligne.
+
+et les partagent sur les médias sociaux ou dans une application d'essayage virtuel où les utilisateurs peuvent essayer différents accessoires tels que les lunettes de soleil, les lunettes de soleil, etc.
+
+où les utilisateurs peuvent essayer différents accessoires comme des lunettes ou des chapeaux.
+
+le suivi du monde est un autre type d'ar ar commun les gens s'y réfèrent parfois comme ar sans marqueur
+
+mais je trouve que cela prête à confusion parce que l'ar de suivi du visage, par exemple, ne nécessite pas non plus de marqueur.
+
+le terme "sans marqueur" ne transmet pas suffisamment d'informations sur le type de suivi du monde.
+
+le contenu augmenté peut être placé n'importe où, sans être limité à une image, un visage ou un objet physique particulier.
+
+ou à des objets physiques particuliers, il peut sembler qu'il ne suive rien en premier lieu, mais en fait, le moteur d'ar
+
+il capture et suit en permanence l'environnement et estime votre position dans le monde physique.
+
+Vous avez peut-être remarqué que dans ce type d'art, les objets sont souvent attachés au sol.
+
+dans ce cas, nous pouvons également parler de suivi de plan ou de suivi de terrain
+
+vous avez peut-être rencontré un terme appelé ar basé sur la localisation ce que les gens entendent généralement par là
+
+c'est que le contenu de l'ar est lié à un certain emplacement géographique, comme la latitude et la longitude.
+
+normalement, ces applications sont des types de suivi du monde, car les contenus augmentés sont généralement attachés au sol.
+
+sont généralement attachés au sol, mais par définition, la géolocalisation n'est pas nécessairement
+
+nécessairement être un suivi mondial, c'est un autre exemple qui montre pourquoi je pense que la catégorisation de l'ar
+
+pas par le type de suivi est source de confusion à mon avis je dirais même que la partie géolocalisation n'est pas pertinente dans le contexte de l'ar.
+
+n'est pas du tout pertinente dans le contexte de l'ar, il s'agit plutôt d'une condition de déclenchement supplémentaire
+
+ce qui signifie que l'effet ne peut être ressenti que dans un lieu géographique particulier
+
+mais l'expérience pourrait être un effet de suivi d'image ou un effet de suivi de visage à cet égard
+
+la localisation en elle-même n'est pas claire pour résumer ma catégorisation de l'ar.
+
+nous avons introduit le suivi d'image le suivi de visage le suivi du monde et il pourrait y avoir d'autres types de suivi comme par exemple le suivi de l'image.
+
+d'autres types de suivi comme le suivi d'objets en 3D ou le suivi des mains etc etc
+
+Alors écoutez bien, voici le concept le plus important de tout le cours, si vous comprenez ceci, vous êtes
+
+vous êtes meilleur que 90% des développeurs d'ars et la bibliothèque d'ars ne fait qu'une seule chose : estimer la pose de la caméra virtuelle en fonction de la position de la caméra.
+
+la pose de la caméra virtuelle en fonction de ce que vous voulez suivre je vais le répéter et la bibliothèque d'ar
+
+ne fait qu'une seule chose : estimer la position de la caméra virtuelle en fonction de ce que l'on veut suivre
+
+j'ai peut-être un peu exagéré, la bibliothèque fait plus que cela, mais vous voyez l'idée
+
+Permettez-moi d'essayer d'élaborer ceci au niveau du code, nous allons donc retourner à notre code 3.js.
+
+Comment une bibliothèque ar s'intègre-t-elle ici ?
+
+supposons que nous ayons un moteur d'ar et que nous l'instancions dans un nouveau moteur d'ar
+
+nous allons ensuite appeler une méthode appelée ar dot compute camera pose qui prend la vidéo comme entrée
+
+cette méthode va estimer la pose de la caméra et retourner la position et la rotation estimées
+
+et la rotation estimées et nous mettrons alors à jour la caméra en conséquence
+
+et nous aimerions répéter ce processus en continu
+
+idéalement pour chaque image vidéo
+
+mais pas plus, donc nous ferons probablement quelque chose de similaire pour attendre que la prochaine image vidéo soit prête
+
+Voici ce qui est amusant : dans la pratique, les applications ar aiment déplacer les objets
+
+plutôt que la caméra, ce qui signifie que nous aimerions garder la caméra intacte au centre mais déplacer la scène autour de l'objet.
+
+au centre mais déplacer la scène autour d'elle pour produire exactement le même rendu
+
+pensez-y déplacer la caméra vers la gauche d'une unité aura le même effet que déplacer l'objet vers la droite d'une unité.
+
+que de déplacer l'objet vers la droite d'une unité et ceci s'applique également à la rotation.
+
+Donc, pour revenir à notre code, au lieu de calculer la position de la caméra, nous calculons la position de l'objet
+
+puis nous utilisons la position estimée pour mettre à jour l'objet augmenté qui, dans ce cas, est le cube.
+
+et ceci complètera notre dernière pièce du puzzle ar pour l'instant c'est juste du pseudo-code donc nous ne pouvons pas l'exécuter mais plus tard nous le ferons.
+
+mais plus tard, nous remplacerons ce moteur d'ar par un vrai.
+
+j'espère que vous avez compris comment fonctionne l'ar en quelques mots dans cette section nous avons parcouru le concept de base du rendu 3d dans l'ar.
+
+concept de base du rendu 3d dans les navigateurs suivi de sa relation avec le suivi, en espérant que cela vous donnera un bon cadre mental.
+
+cela vous donnera un bon cadre mental, y compris pour nos applications ar dans les sections suivantes.
