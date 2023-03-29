@@ -1,3 +1,3 @@
-import * as THREE from 'three';
+import * as THREE from './assets/cours/applications/libs/three.js-r132/build/three.module';
 
-const scene = new THREE.Scene();
+console.log("THREE", THREE);
