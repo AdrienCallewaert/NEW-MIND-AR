@@ -1,0 +1,99 @@
+The libraries we used in this course are all easy to set up.
+
+We can do everything in plain HTML and JavaScript.
+
+It means that all you need is a text editor and a web browser.
+
+Now let me just go ahead and create a simple web page.
+
+Let's call this test.html
+
+and I'm going to just show a simple text.
+
+My testing web page.
+
+Normally, to run a regular HTML web page, you can just open it directly on the web browser like this.
+
+However, it might not work for AR applications which require camera access.
+
+Also, you may want to test the apps on your mobile devices from time to time, so it is better to set
+
+up a local web server. Any web servers will do because we just need to serve static web pages.
+
+I won't go into the details, since I assume many of you might have already set up already.
+
+If not, you can just google something like "set up localhost web server" and you will find tons of help.
+
+It is better to set up a proper web server, but if you don't want to,
+
+here is an alternative.
+
+There is a chrome extension called Web Server for Chrome. It's very easy to use.
+
+You can launch the app and then select the root directory of your web pages.
+
+Remember the check assessible on local network here, so other devices can also access the webpage
+
+After that, you can start the web server and you'll be given an URL.
+
+just like that.
+
+very easy.
+
+Technically, we can do all the development work and testing directly on the desktop browser, but
+
+sometimes you still want to try on a mobile phone to get an actual experience.
+
+If the devices are connected under the same local network without firewall, you should be able to
+
+access it without any problem.
+
+However, in case you are behind a firewall, you can use a tool called ngrok, which will generate
+
+a public URL for you.
+
+So check out this home page for the installation guide.
+
+After installing the program, what you do is something like this, so you run the ngrok program,
+
+http, followed by the port of your web server.
+
+In our case, the port is eight eight eight seven, which is the default port given by the Chrome extension.
+
+After you run this command, a public URL will be generated, which tunnels to your web server.
+
+So this URL is accessible by any devices with internet connection.
+
+Finally, here's a small debugging tip. When we develop web applications.
+
+One of the things we always wanted to do is to check console log for debugging.
+
+Let me write something to illustrate what I meant by that.
+
+So let's say I have a script.
+
+That log a debug message.
+
+if you're using the desktop browser, it's very easy, you can just right click Inspect.
+
+and go to the console tab, and then when you run the webpage, you will be able to see the message.
+
+However, if you are running on your mobile devices, it might not be that easy.
+
+In this case, I can suggest a tool called remotejs.
+
+If you go to the homepage, there is a start debugging button. After you click on it.
+
+you will be given a script that you can copy and paste directly on your web page.
+
+After you've done that.
+
+and next time you run your webpage again,
+
+these debug message will also be sent to the webpage so you can see all the log online. It's very useful.
+
+Great.
+
+So that's all we need for now.
+
+So take some time to set it up before going to the next section.

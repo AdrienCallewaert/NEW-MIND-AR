@@ -1,0 +1,175 @@
+Bonjour, dans cette section, nous allons parler du fonctionnement de la réalité augmentée dans l'environnement du navigateur.  
+
+et pour comprendre comment fonctionne la RA, nous devons d'abord parler du rendu 3D dans les navigateurs. Ainsi, tout  
+
+tout commence avec webgl. En bref, webgl est une interface javascript pour le rendu des graphiques 3D dans les navigateurs.  
+
+webgl est un standard web multiplateforme, donc tous les principaux navigateurs le supportent.  
+
+mais le code webgl est très difficile à lire et à écrire  
+
+c'est pourquoi des bibliothèques plus conviviales ont été créées. three.js est l'une de ces bibliothèques.  
+
+et c'est également ce que nous utiliserons fortement dans ce cours.  
+
+supportent 3.js, il vaut donc vraiment la peine de le maîtriser si vous voulez sérieusement développer des applications AR sur le web.  
+
+sur le web pour comprendre le fonctionnement de threejs à un haut niveau, imaginez que vous êtes un réalisateur de film.  
+
+vous devez faire deux choses : d'abord, vous mettez en place une scène en disposant des objets autour d'elle  
+
+Ensuite, vous déplacez une caméra pour capturer des images à différentes positions et sous différents angles.  
+
+et des angles c'est plus ou moins comme cela que fonctionne le rendu 3D alors maintenant regardons un peu de code 3.js
+
+nous allons créer une application 3.js à partir de zéro comme n'importe quelle autre page web nous aurons besoin d'un fichier html  
+
+appelons-le index.html html head et body nous n'avons besoin de rien à l'intérieur de body  
+
+car nous utiliserons du javascript pour générer le contenu, nous aurons donc un script
+
+nous pouvons mettre le code javascript ici mais il est préférable de le mettre dans un fichier séparé.  
+
+dans un fichier séparé, donc créons un autre fichier appelé main.js et incluons-le ici.
+
+la première chose à faire est d'importer la bibliothèque 3js pour tous ceux qui sont relativement nouveaux dans le développement web.  
+
+web, de nombreuses bibliothèques sont déjà hébergées dans le nuage et nous pouvons les importer directement.  
+
+nous les appelons généralement cdns si vous allez sur la page d'accueil de 3.js
+
+sous documentation et installation, vous trouverez le chemin d'importation au milieu de la page.
+
+Mais pour s'assurer que nous utilisons tous la même version de la bibliothèque afin que nos exemples fonctionnent comme prévu, j'ai téléchargé toutes les versions de la bibliothèque.  
+
+fonctionneront comme prévu, j'ai téléchargé toutes les bibliothèques nécessaires et je les ai incluses dans les supports de cours.  
+
+donc au lieu de l'importer à partir du cdn, je vais l'importer à partir d'un fichier local  
+
+je vais donc importer star s3 à partir d'un fichier local
+
+et parce que nous utilisons cette déclaration d'importation, nous devrons ajouter un attribut supplémentaire appelé  
+
+type equals module lorsque nous importerons le script principal.  
+
+est importée correctement, je vais faire un log de la console, alors rafraîchissons la page et ouvrons la console
+
+il y a une erreur de syntaxe donc import star as three from blah blah blah ok donc il manque un deux points
+
+oui donc euh trois et ensuite le module importé  
+
+nous sommes prêts à partir, commençons à écrire le code 3.js
+
+Normalement, nous aimerions exécuter le code javascript une fois que le html a fini de se charger.  
+
+pour cela nous allons ajouter un event listener event listener dom content loaded et ensuite mettre tout le code à l'intérieur du callback.  
+
+tout le code à l'intérieur du callback, je vais également supprimer la déclaration de débogage
+
+Comme nous l'avons mentionné précédemment, en tant que réalisateur de film, vous devez faire deux choses : premièrement, vous devez mettre en place la scène.  
+
+c'est exactement ce que nous devons faire ici, nous allons donc créer un objet scène  
+
+news three dot scene et ensuite nous allons créer un objet je vais faire geometry new three dot box geometry  
+
+one one one et le matériau news Three dot mesh basic material  
+
+couleur zéro zéro zéro zéro f f et un groupe qui est un maillage avec une géométrie et un matériau.
+
+si vous n'avez pas d'antécédents en matière d'éléments 3D, pour des raisons de simplicité  
+
+vous pouvez simplement supposer que les objets 3D sont représentés sous forme de maillage et qu'un maillage est composé de deux choses  
+
+d'abord sa géométrie qui définit la forme de l'objet dans ce cas, il s'agit d'une boîte d'une unité  
+
+d'une unité en largeur, hauteur et profondeur. D'autre part, le matériau définit les propriétés optiques de l'objet, comme sa couleur, sa texture, etc.
+
+optiques de l'objet, comme sa couleur, sa texture, sa brillance, etc. dans notre cas, il s'agit d'un simple bleu.
+
+Nous pouvons ensuite ajouter le cube à la scène en faisant scene dot add group  
+
+nous pouvons également repositionner le cube en définissant sa propriété de position  
+
+disons zéro zéro négatif 2 donc par défaut il est situé au centre qui est zéro zéro zéro nous pouvons aussi  
+
+changer la rotation pour dire zéro et ensuite math.pi sur quatre zéro donc le radian est divisé par le radian  
+
+désolé la rotation est définie par le radian donc math.pi sur 2 signifie 45 degrés
+
+et nous effectuons une rotation le long de l'axe des y
+
+un autre élément important pour un réalisateur de film est la caméra, nous allons donc créer une caméra  
+
+nous allons donc créer un objet caméra nouveau trois points perspective caméra et comme tout autre objet nous pouvons également changer la position de la caméra pour un autre endroit comme par exemple la position de la caméra sur la carte.  
+
+changer la position de la caméra à un autre endroit, disons un un cinq.  
+
+prête, nous pouvons la rendre et pour ce faire, nous allons créer un objet de rendu appelé
+
+renderer equals new three dot web gl renderer
+
+et effectuer le rendu de la caméra de la scène de rendu
+
+Comme son nom l'indique, cet objet de rendu nous permet d'effectuer le rendu d'un graphique 2d à partir de la scène et de la caméra.  
+
+un graphique 2d en fonction de la scène et de la caméra. Nous pouvons également définir la taille du rendu.  
+
+Définissons la taille, disons 500 pixels en largeur et en hauteur.
+
+Maintenant, vous pouvez vous demander où nous effectuons le rendu, c'est une très bonne question.  
+
+nous utilisons l'élément canvas pour afficher les graphiques rendus lorsque nous créons un moteur de rendu webgl, nous avons également créé un élément canvas avec lui lorsque nous appelons le rendu, cet élément canvas sera mis à jour.  
+
+nous avons également créé un élément canvas avec lui lorsque nous appelons le rendu, cet élément canvas sera mis à jour.  
+
+puisque cet élément canvas nouvellement créé n'est pas encore attaché à la page html.  
+
+pour ce faire, nous ferons document dot body dot append child renderer dot dom element, donc renderer  
+
+dot dom element est un élément canvas. Si nous actualisons la page, nous verrons le cube rendu.  
+
+cube rendu et si nous inspectons le dom html, nous pouvons voir un élément canvas à l'intérieur du body
+
+Maintenant, essayons d'ajouter une chose de plus pour que cela ressemble à une application ar, nous allons démarrer le ...  
+
+nous allons démarrer la caméra de l'appareil et la placer sous le canevas pour ce faire, je vais créer une vidéo
+
+document.create element video
+
+et pour démarrer la webcam, je vais faire navigator.mediadevices.getusermedia
+
+video true and stream assigner le flux à l'objet source vidéo et ensuite lire la vidéo
+
+Nous devons également attacher la vidéo au corps du document.
+
+c'est ce que je vais faire
+
+enfin, nous voulons les faire se chevaucher, nous allons donc  
+
+position css à absolute donc nous ferons video style.position equals absolute et renderer.element.style.position equals absolute et renderer.element.style.position equals absolute.
+
+renderer.element.style.position equals absolute
+
+Je vais également définir la dimension de la vidéo en fonction de la taille du canevas, donc je vais faire video.style.width equal  
+
+la largeur de l'élément renderer dot dom et la hauteur également
+
+Et une dernière chose, comme vous pouvez le voir ici, le fond de la toile est noir.  
+
+mais ce n'est pas ce que nous voulons, nous voulons qu'il soit transparent pour que nous puissions voir à travers lui.  
+
+et pour ce faire, nous allons ajouter un paramètre supplémentaire lorsque nous créons l'objet de rendu qui est alpha true
+
+Actualisons maintenant la page et vous pouvez voir le flux de la caméra sous les graphiques de rendu.  
+
+si nous regardons les éléments dom, nous pouvons maintenant voir un autre élément vidéo à côté du canevas et  
+
+ils se superposent l'un à l'autre, c'est donc une application AR, un objet virtuel qui se superpose à moi.
+
+cela peut sembler stupide mais c'est en effet ce qui se passe dans une application ar web un élément canvas  
+
+sur une vidéo et c'est tout la seule chose qui manque ici, c'est que l'objet rendu  
+
+devrait apparaître à un endroit plus raisonnable et la position devrait être mise à jour en continu en fonction de l'entrée de la caméra.  
+
+en fonction de l'entrée de la caméra, ce qui nous amène à la dernière pièce du puzzle : le suivi de l'objet.

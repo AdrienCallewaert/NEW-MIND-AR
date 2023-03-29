@@ -1,0 +1,163 @@
+Hello everyone
+
+Welcome to the course, the most comprehensive guide to developing Web based augmented reality applications.
+
+WebAR stands out from others in that it's cross-platform and requires no app installation.
+
+They're just regular Web pages.
+
+Running on regular web browsers.
+
+My name is Kim, I'm a major contributor in the open source webAR community.
+
+I've worked on AR.js before, which might be the most well-known webAR library in the world.
+
+Unfortunately, AR.js is mostly being abandoned and the technologies have become obsolete.
+
+I later on, rewrote a new library called MindAR with a more modern tech stack.
+
+MindAR library is open sourced under MIT license, and it's completely free to use.
+
+This is the main library that we will be using in this course for developing image tracking effects
+
+and face tracking effects.
+
+Although MindAR is the primary library, the knowledge is definitely transferable to other commercial
+
+AR SDKs as well.
+
+Besides image effects and face effects, we will also learn how to develop world tracking effects
+
+with WebXR.
+
+WebXR is a native JavaScript API for building immersive experiences in browsers, including
+
+AR and VR
+
+Being a web standard, it will probably become one of the most significant technologies for the web in
+
+the years to come.
+
+It's definitely something that you should pick up if you're serious about web AR or web VR.
+
+We will also learn how to integrate tensorflowjs machine learning models into AR applications
+
+to create highly interactive and interesting effects, for example, using hand gestures or facial expressions
+
+to control AR content.
+
+You won't be able to develop any serious AR applications
+
+without mastering a 3D rendering framework.
+
+I'll help you kickstart this journey by introducing threejs
+
+if you didn't know it already.
+
+We will be using threejs heavily in this course. Prior knowledge is not an assumption,
+
+but if this is new to you, be prepared to dig up the documentation from time to time.
+
+The course material is carefully designed, each lecture is highly modular to deliver a single concept
+
+which allows you to look up any references easily in the future.
+
+I made extra efforts to ensure the code is as concise as possible, so you can follow along
+
+during the lectures.
+
+Besides lectures, you will have to finish three practical assignments in total, one for each type of
+
+tracking effects.
+
+I want to make sure the assignments are meaningful to your career, not just for the sake of finishing
+
+the course.
+
+So one of the assignments is to create and deploy a real online AR portfolio for yourself, which you can
+
+show other people.
+
+I've over 10 years of professional experience in developing web applications and with a software consultancy
+
+background, I probably have worked on more than 100 or 200 web based software projects in my career.
+
+Trust me, I know from first hand how to be an effective developer.
+
+Development is just a trial and error cycle.
+
+Nobody can write the whole piece from start to end and then say, I'm done.
+
+It doesn't work like that.
+
+You make changes and check results, make changes and check results again and again until you are done.
+
+The biggest secret of all is to shorten this iterative cycle.
+
+This is especially true for AR applications, which require an external device to test.
+
+I'll share a lot of my personal experiences and tips along the way to help you improve as a web developer
+
+in general.
+
+For example,I will show you how to effectively debug a web app in your mobile devices or how
+
+to mock up the webcam with pre-recorded videos, so we don't have to start the webcam every time we
+
+need to test
+
+an AR effect
+
+I believe what distinguishes a great developer from the mediocre is often the theoretical understanding
+
+of the subjects.
+
+I really like the saying "experience without theory is blind.
+
+but theory without experience is merely intellectual play".
+
+There are tons of AR development tutorials online.
+
+You can mostly finished with something cool by following the steps.
+
+However, when it's time for you to build something on your own, even for a similar application, you
+
+often find yourself handicapped.
+
+That's because you lack theory.
+
+Unlike most people, I've personally written my own AR library from scratch, so I know inside out of
+
+how everything works.
+
+So another important highlight of this course is that I will help strengthen your theoretical knowledge on
+
+how AR works in a browser environment.
+
+To summarize, here is the overview of the course.
+
+Session two is a Primer I'll help you set up the development environment and get ready for the lectures.
+
+In section three, I'll go over some fundamental concepts in webAR
+
+Section four, five and six are the core development sections.
+
+You will gain hands on experiences in developing image tracking, face tracking and world tracking
+
+types of AR applications, with MindAR library, webXR API and threejs 3D rendering framework.
+
+It will be followed by section seven in which we will discuss the integration with tensorflowjs
+
+machine learning models.
+
+In the last section, I will briefly discusse other important webAR technologies and solutions, including
+
+AFRAME, model-viewer and other commercial SDKs.
+
+By the end of the course, you will have a very comprehensive understanding on all the development tools in webAR
+
+and more importantly, know when to use what.
+
+So what are you still waiting for?
+
+Let's do it.

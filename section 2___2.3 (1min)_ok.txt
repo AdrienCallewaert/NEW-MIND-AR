@@ -1,0 +1,31 @@
+Let me quickly go over the course materials.
+
+You should see an attachment under this lecture.
+
+Please download and unzip the file.
+
+It contains all the examples used in the course. You should see four directories.
+
+libs folder contains all the libraries needed.
+
+assets folder contains all the assets, including 3D models, images, videos, etc..
+
+lectures folder contains all the completed source code at the end of each lecture.
+
+lectures-start, on the other hand, contains the source code at the beginning of each lecture
+
+for each lecture,
+
+I suggest you to open the corresponding source code in the lectures-start
+
+and follow along while watching the video.
+
+If you have any problems.
+
+Open the one in the Lectures folder for reference.
+
+There is a README file that contains all the mapping between lectures and source code.
+
+for any lectures that do not have source code, you can just relax and listen.
+
+That will be all.
