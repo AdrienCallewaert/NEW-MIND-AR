@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     camera.position.set(1, 1, 5);
 
     const renderer = new THREE.WebGL1Renderer();
-    render.setSize(500, 500); /* unit in px */ /* unité en pixel */
+    renderer.setSize(500, 500); /* unit in px */ /* unité en pixel */
     renderer.render(scene, camera);
 
+    document.body.appendChild(renderer.domElement);
 
 });
