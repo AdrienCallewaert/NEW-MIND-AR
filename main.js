@@ -1,4 +1,4 @@
-import * as THREE from './assets/applications/libs/three.js-r132/build/three.module.js';
+import * as THREE from './assets/applications/libs/three.js-r132/build/three.module.js'; /* for github add // 2X*/
 
 document.addEventListener('DOMContentLoaded', () => {
     const scene = new THREE.Scene();
