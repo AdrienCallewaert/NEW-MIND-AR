@@ -1,0 +1,72 @@
+Es-tu prêt à mettre les mains dans le cambouis ? Dans cette section, nous allons apprendre à développer des applications de réalité augmentée avec suivi d'images grâce à la bibliothèque MindAR. Commençons !
+
+Puisqu'il s'agit d'une application de suivi d'images, nous aurons évidemment besoin d'une image cible. Pour cet exemple simple, j'utiliserai l'image de bannière du cours. Nous devons d'abord scanner cette image et extraire les points d'intérêt pour le suivi. Cette étape de prétraitement prend un peu de temps, nous aimerions donc la faire au préalable plutôt que de la faire pendant l'exécution pour offrir une meilleure expérience utilisateur. Pour cela, rendez-vous sur l'outil de compilation d'images. Vous pouvez trouver cet outil de compilation sur la page de documentation de MindAR, et vous pouvez l'utiliser directement dans votre navigateur, c'est très pratique. Tout ce que vous avez à faire, c'est de glisser l'image ici et de cliquer sur "Démarrer". Lorsque vous avez terminé, vous pouvez télécharger ce fichier "dot mind", qui contient essentiellement toutes les données dont nous avons besoin pour le suivi.
+
+Maintenant, revenons à l'éditeur de code. Nous allons commencer avec un index.html minimal et main.js. La première chose que nous voulons faire est d'inclure la bibliothèque MindAR en faisant "script source = libs/mindar/mindar-image-three.prop.js". Lorsque nous faisons cela, le module MindAR importé sera attaché à l'objet window de cette manière :
+
+nous avons également besoin de la bibliothèque 3js, mais heureusement, elle fait déjà partie de MindAR.
+
+Nous pouvons y accéder comme une constante 3 en écrivant window.mindar.image.3.
+
+Nous allons d'abord instancier un objet mindARThree en faisant mindARThree = new window.mindAR.IMAGE.mindARThree.
+
+Ce constructeur prend deux paramètres, le premier est le conteneur qui utilisera le corps du document.
+
+Je vais également définir un style pour le corps pour le rendre en plein écran.
+
+html body position relative margin 0 width 100 pour cent hauteur 100 overflow caché.
+
+Plus tard dans cette section, je vous montrerai comment faire une version non plein écran en utilisant
+
+un autre élément HTML pour le conteneur. Un autre paramètre dont nous avons besoin est la source de l'image cible,
+
+qui spécifiera le chemin du fichier .mind que nous avons compilé plus tôt, donc dans ce cas,
+
+le fichier cible s'appelle banner.mind.
+
+Rappelez-vous lorsque nous avons introduit threeJS plus tôt, il y a le rendu, la scène et la caméra,
+
+nous en avons également besoin ici, mais nous n'avons plus besoin de les créer nous-mêmes
+
+parce qu'ils ont déjà été créés lorsque nous avons instancié l'objet mindARThree.
+
+Pour cet exemple, je vais créer un plan semi-transparent pour démontrer l'effet AR.
+
+Je vais donc créer une géométrie plane en faisant geometry = new three.planeGeometry(1, 1),
+
+puis un matériau pour le plan en faisant material = new three.MeshBasicMaterial({
+
+color: any color is fine,
+
+transparent: true,
+
+opacity: 0.5
+
+}), et enfin créer le plan en faisant plane = new three.Mesh(geometry, material).
+
+Nous allons ensuite créer un objet myARAnchor en faisant anchor.mindARThree.addAnchor(index).
+
+Nous passerons l'indice de l'image cible en entrée, qui dans ce cas est zéro car lorsque nous avons compilé
+
+le fichier .mind plus tôt, nous n'avons entré qu'une seule image, et c'est pourquoi l'indice de cette image est zéro.
+
+Plus tard dans la section, je vous montrerai également comment suivre plusieurs images,
+
+et à ce moment-là, cet indice d'image cible aura plus de sens pour vous.
+
+Lorsque nous ajoutons une ancre, nous indiquons essentiellement à la bibliothèque de suivre cette image cible
+
+et de me donner la position et la rotation estimées où je devrais placer mon objet.
+
+Maintenant, au lieu d'ajouter directement le plan à la scène, nous ajouterons ce plan à l'ancre
+
+en faisant anchor.group.add(plane). Ce groupe anchor.group est un élément de groupe 3js.
+
+Pour quiconque est relativement nouveau dans le rendu 3D ou 3.js, les scènes 3D sont
+
+généralement représentées en hiérarchie, un groupe est comme une représentation virtuelle de la position et de l'orientation.
+
+
+Vous pouvez l'ajouter à la scène et définir sa position et sa rotation comme pour des objets ordinaires.
+
+Cependant, il est vide en soi, donc vous ne pourrez rien voir étant rendu. Cependant, nous pouvons ajouter d'autres objets rendables dans le groupe. Lorsque nous faisons cela, la position et la rotation de ces objets hériteront automatiquement de ce groupe parent. La bonne chose est que ce groupe d'ancrage est géré par la bibliothèque mindAR, ce qui signifie que la bibliothèque mettra continuellement à jour la position et la rotation en fonction de notre cible de suivi. Maintenant, notre scène est prête, nous configurerons la boucle de rendu comme toute autre application 3js. Nous ferons renderer.set animation loop, cette fonction de rappel sera exécutée pour chaque image, et à l'intérieur de cette fonction de rappel, nous rendrons à nouveau l'élément canvas en faisant cela. Enfin, nous devrons démarrer le moteur mindAR en faisant mindARThree dot start. Normalement, j'attendrai que le moteur soit prêt avant de démarrer la boucle de rendu ici, c'est pourquoi je vais déplacer ceci en haut et attendre cela, et parce que await ne peut être utilisé que dans une fonction asynchrone, je devrai tout envelopper dans une fonction asynchrone comme ceci et l'appeler. Et c'est tout, c'est une application AR entièrement fonctionnelle avec seulement environ 20 lignes de code. Maintenant, exécutons-le et voyons ce qui se passe. Il peut y avoir des erreurs, donc laissez-moi y jeter un coup d'œil. Erreur de syntaxe à la ligne 13 ici, oui, c'est un point-virgule. Très bien, l'application a démarré, alors maintenant, ouvrons notre image cible ici, voyons voir. Notre plan transparent est maintenant attaché à l'image cible. Avant de terminer, je voudrais présenter le pseudocode de la section précédente pour une comparaison rapide. Le panneau de droite est ce que nous avons fait lorsque nous avons introduit comment fonctionne l'AR. Nous créons des objets de scène, de caméra et de rendu. Nous avons également besoin de ces objets ici dans la nouvelle version, mais nous n'avons plus besoin de les créer nous-mêmes. Nous créons des objets augmentés comme auparavant. Il n'y a pas beaucoup de différence dans la version précédente. Nous démarrons nous-mêmes la webcam, puis la faisons chevaucher avec le canvas, mais nous ne nous en soucions plus. Enfin, cette boucle de suivi est entièrement gérée par la bibliothèque, tout ce que nous avons à faire est de créer un ancrage et d'y attacher l'objet. J'espère que vous avez passé un bon moment à construire votre première application AR. Plus de choses intéressantes arriveront bientôt, alors restez à l'écoute.

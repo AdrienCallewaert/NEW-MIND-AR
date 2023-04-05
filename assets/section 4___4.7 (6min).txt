@@ -1,0 +1,151 @@
+onjour,
+
+Ceci est une nouvelle conférence ajoutée en mars 2023.
+
+Il y a une petite mise à jour concernant le guide d'installation pour MindAR.
+
+Ce matériel de cours est basé sur la version 1.1.4 de MindAR.
+
+À partir de la version 1.2.0, il y a un changement dans la façon d'importer la bibliothèque.
+
+Néanmoins, tout le reste reste inchangé et les API sont toutes les mêmes, vous n'avez donc rien à
+
+craindre.
+
+Pour ceux qui sont curieux, dans le passé, JavaScript n'était pas un langage très modulaire.
+
+Si vous regardez le code de notre conférence précédente ici.
+
+Lorsque nous importons le script de la bibliothèque, la bibliothèque est affectée à la portée globale de l'environnement d'exécution,
+
+qui dans ce cas est l'objet Window.
+
+Cette approche a causé plusieurs problèmes.
+
+Par exemple, si votre projet avait plusieurs fichiers et devenait plus complexe, cela pourrait être difficile à
+
+gérer.
+
+Ces dernières années, la tendance a été de modulariser les choses.
+
+Vous avez peut-être entendu parler du terme "ES Module" quelque part.
+
+L'idée fondamentale est de transformer les choses en modules et de les importer lorsque c'est nécessaire.
+
+Donc, au lieu d'assigner tout à la portée globale.
+
+Euh.
+
+Nous voulons quelque chose comme ceci.
+
+Import.
+
+Étoile comme trois sur trois et importer minARtThree.
+
+Euh, depuis minar-image-three.
+
+Et nous ne voulons plus de la fenêtre point, blah, blah, blah.
+
+Euh, nous devons définir ce que
+
+Three et mind-image-three signifient ici.
+
+Nous y parvenons en utilisant quelque chose appelé une "inputmap".
+
+Voici un exemple d'inputmap.
+
+Euh, oui.
+
+Donc nous n'avons plus besoin de cela.
+
+Supprimons cela.
+
+Cette inputmap fait essentiellement correspondre la clé de la bibliothèque.
+
+À.
+
+L'emplacement de la bibliothèque.
+
+Donc "three" vient d'ici.
+
+Et "mindar-image-three" vient d'ici.
+
+Euh, il convient de noter que l'importmap est encore une fonctionnalité récente qui n'est pas encore prise en charge dans
+
+tous les navigateurs.
+
+Pour y remédier, nous utilisons quelque chose appelé un "Polyfill".
+
+Un polyfill est un morceau de code qui ajoute des fonctionnalités manquantes aux navigateurs qui ne prennent pas encore en charge
+
+certaines fonctionnalités.
+
+Euh, dans ce cas, nous ajoutons ce script.
+
+Qui agit comme un polyfill pour activer l'importmap.
+
+Donc cela fonctionnera sur la plupart des navigateurs.
+
+D'accord.
+
+De plus, nous devons ajouter une propriété "type = module".
+
+Au script principal ici.
+
+La raison est que nous.
+
+Utilisons l'import ici.
+
+Et si nous ne l'ajoutons pas, cela ne fonctionnera pas.
+
+De toute façon, pour suivre ce cours, il est préférable de rester avec la version 1.1.4 sur laquelle
+
+l'ensemble du cours est basé.
+
+Cependant, plus tard, lorsque vous travaillerez sur votre projet réel, il est recommandé d'utiliser la dernière version
+
+de la bibliothèque.
+
+Donc quand ce temps viendra, je vais simplement copier ceci.
+
+Euh, votre projet et cela irait bien.
+
+Vous pouvez également trouver l'exemple entier.
+
+Dans les matériaux de cours sont l'installation.
+
+dossier d'exemple.
+
+Donc l'utilisation de la dernière version de la bibliothèque vous permet également de choisir votre version préférée de three.js.
+
+Avant la version un.
+
+Point deux.
+
+Une version gratuite spécifique était intégrée dans MindAR et vous ne pouviez pas la changer.
+
+Cependant, elle est depuis devenue une dépendance externe, ce qui vous donne la flexibilité de choisir votre version préférée.
+
+Par exemple.
+
+Comme.
+
+148, 149, 150.
+
+Peu importe.
+
+Vous pouvez facilement changer cela.
+
+Euh, la dernière version de MindAR.
+
+Est 1.2.1.
+
+.
+
+Mais cela peut aussi changer.
+
+Donc dans ce cas, vous pouvez mettre à jour votre 1.2.2, par exemple, comme ça.
+
+Oui, je pense que c'est tout.
+
+Merci.
