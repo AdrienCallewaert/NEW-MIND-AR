@@ -1,0 +1,59 @@
+Les modèles 3D jouent un rôle très important dans les applications de réalité augmentée, bien qu'il s'agisse plutôt de la bibliothèque 3JS en général. Dans ce sujet, je vais quand même donner une courte discussion et un exemple de chargement de modèles 3D dans la scène.
+
+Three.js est livré avec de nombreux chargeurs de modèles que vous pouvez consulter sur la page de documentation pour savoir comment charger différents formats de modèles 3D. À titre de démonstration, je vais vous montrer comment charger un modèle GLTF, que je crois être le format le plus largement utilisé sur le Web de nos jours.
+
+Le chargeur GLTF n'est pas inclus dans la bibliothèque de base 3JS et il n'est pas inclus dans Mindar. Nous devrons donc l'importer explicitement en faisant "import gltf loader from libs / 3.js / r132 / examples / gsm loaders / gltf loader.js". Nous instancierons le chargeur, puis appellerons la méthode "load" avec le chemin de notre modèle 3D, qui dans ce cas est "assets / models / music band raccoon scene.gltf".
+
+L'objet GLTF retourné dans cette fonction de rappel contient de nombreuses choses, mais pour l'instant, nous nous intéressons uniquement à la propriété de la scène GLTF pour simplifier, vous pouvez considérer qu'il s'agit de l'objet 3D réel que nous allons ajouter à notre scène 3D. Un modèle GLTF peut contenir plusieurs éléments, c'est pourquoi le mot "scène" est ici plus approprié que, par exemple, "gltf.object". En fait, il s'agit d'un élément de groupe 3JS.
+
+Comme précédemment, nous allons ajouter cet objet à notre ancre. Nous ferons "anchor.group.add(gltf.scene)". Exécutons-le et voyons ce qui se passe. Nous pouvons voir le modèle, mais il est complètement sombre et semble trop grand. Nous allons donc le corriger.
+
+Le modèle apparaît complètement sombre car il n'y a pas de lumière dans la scène, nous devrons donc en ajouter une. Nous allons faire "constant light equals new three.hemisphere light with some setting" et ajouter la lumière à la scène d'éclairage. Il s'agit d'un sujet très vaste en rendu 3D dans lequel je ne vais pas entrer dans les détails, mais nous n'essayons pas de le rendre super beau, donc n'importe quelle lumière fera l'affaire ici. Nous allons également mettre à l'échelle le modèle à "0,1".
+
+Nous allons également ajuster un peu la position en définissant la position à -0.4 0.
+
+La raison pour laquelle nous faisons cela est qu'il y a quelque chose qui ne va pas avec le modèle lui-même.
+
+L'échelle n'est pas normalisée correctement et l'objet n'est pas positionné au centre.
+
+J'ai constaté que ce problème existe pour de nombreux modèles 3D sur Internet.
+
+Honnêtement, ces nombres sont décidés par essais et erreurs, il suffit de voir le résultat et d'ajuster.
+
+Laissons la page tourner à nouveau et voyons ce qui se passe.
+
+Bien.
+
+Voici un petit conseil de codage personnel :
+
+J'ai tendance à éviter ce genre de fonction de rappel autant que possible, je la remplacerai par une promesse.
+
+Si vous chargez un seul modèle comme celui-ci, cela peut sembler bien, mais si vous devez en charger plusieurs,
+
+vos codes commenceront à devenir compliqués. Je pense également qu'il est préférable de tout charger dans
+
+la scène avant de commencer réellement le moteur, donc voici ce que je vais faire. Je vais créer une fonction d'aide
+
+appelée "load gltf" qui prend le chemin du modèle en entrée et renvoie une nouvelle promesse.
+
+Je vais effectuer le chargement réel ici, à l'intérieur de la promesse.
+
+Charger le chemin gltf
+
+et résoudre la promesse lorsque le modèle est prêt. Ensuite, dans notre portée d'application principale ici,
+
+je peux simplement faire constante gltf égale à attendre low gltf et passer le chemin du modèle
+
+et ensuite, je peux déplacer ceux-ci à l'extérieur
+
+et supprimer ce morceau de code
+
+Je pense que c'est beaucoup plus propre et plus facile à maintenir, et je vais utiliser cette fonction d'aide
+
+beaucoup plus tard. J'ai donc également mis cela dans notre bibliothèque d'utilitaires. La prochaine fois, nous pourrons simplement faire
+
+importer loadgltf de libraries loader.js et nous pouvons supprimer cette fonction et cette fonction
+
+et cela conclura notre petit tutoriel sur le chargement de modèles 3D.
+
+J'espère que vous le trouverez utile.
