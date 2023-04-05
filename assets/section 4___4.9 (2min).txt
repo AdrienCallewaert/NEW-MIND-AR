@@ -1,0 +1,9 @@
+Les applications AR sont généralement jouées en mode plein écran, cependant ce n'est pas une restriction pour Mindar, car nous pouvons facilement transformer l'élément div HTML en un conteneur AR.
+
+Par exemple, juste ici, au milieu de la page, je peux créer une div et lui donner un identifiant, disons "my ar container". Au lieu d'utiliser le corps du document comme conteneur, nous pouvons le changer en "document.querySelector('my ar container')".
+
+Par défaut, la hauteur de cet élément div est de 0, donc nous ne pourrons rien voir. Nous devrons ajouter un peu de style CSS pour le conteneur. Nous allons fixer la hauteur à 300 pixels et la largeur aussi, en raison de la manière dont la vidéo et le canevas sont ajoutés au conteneur plus tard. Nous devons également définir la propriété de position sur relative.
+
+Enfin, la vidéo de la caméra peut avoir un rapport d'aspect différent de celui du conteneur, donc une partie de la vidéo apparaîtra à l'extérieur de la zone du conteneur. Par conséquent, nous devons également définir la propriété de débordement sur "hidden" afin de masquer cela. Maintenant, nous sommes prêts à partir.
+
+Laissons-nous la page web s'exécuter et vous verrez que le conteneur AR est intégré au milieu de la page.
