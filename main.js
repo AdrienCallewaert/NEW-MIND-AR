@@ -1,24 +1,31 @@
-import { mockWithVideo, mockWithImage } from './assets/applications/libs/camera-mock.js';
+import { loadGLTF } from "./assets/applications/libs/loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
     const start = async() => {
-
-        // mockWithVideo('./assets/applications/assets/mock-videos/course-banner1.mp4');
-        // mockWithImage('./assets/applications/assets/mock-videos/course-banner1.png');
-
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-            container: document.querySelector("#my-ar-container"),
-            imageTargetSrc: './assets/applications/assets/targets/course-banner.mind',
+            container: document.body,
+            imageTargetSrc: '/assets/applications/assets/targets/musicband.mind',
+            maxTrack: 2,
         });
         const { renderer, scene, camera } = mindarThree;
 
-        const geometry = new THREE.PlaneGeometry(1, 1);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.5 });
-        const plane = new THREE.Mesh(geometry, material);
+        const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
+        scene.add(light);
 
-        const anchor = mindarThree.addAnchor(0);
-        anchor.group.add(plane);
+        const raccoon = await loadGLTF('/assets/applications/assets/models/musicband-raccoon/scene.gltf');
+        raccoon.scene.scale.set(0.1, 0.1, 0.1);
+        raccoon.scene.position.set(0, -0.4, 0);
+
+        const bear = await loadGLTF('/assets/applications/assets/models/musicband-bear/scene.gltf');
+        bear.scene.scale.set(0.1, 0.1, 0.1);
+        bear.scene.position.set(0, -0.4, 0);
+
+        const raccoonAnchor = mindarThree.addAnchor(0);
+        raccoonAnchor.group.add(raccoon.scene);
+
+        const bearAnchor = mindarThree.addAnchor(1);
+        bearAnchor.group.add(bear.scene);
 
         await mindarThree.start();
         renderer.setAnimationLoop(() => {
