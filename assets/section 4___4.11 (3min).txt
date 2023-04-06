@@ -1,0 +1,25 @@
+La bibliothèque Mindar vous permet d'avoir plusieurs images cibles dans une seule application. Lorsque vous compilez votre fichier .mind, vous n'avez qu'à sélectionner plusieurs images comme ceci.
+
+Je ne vais pas attendre ça, donc revenons simplement à notre code. Tout d'abord, je vais charger deux modèles 3D dans la scène, un raton laveur et un ours. Je vais fixer l'échelle et la position comme nous l'avons fait précédemment.
+
+Pour le raton laveur :
+
+raccoon = await load gltf assets models music band raccoon scene.dot.gltf
+
+raccoon.scene.scale.set()
+
+raccoon.scene.position.set(2, -0.4, 0)
+
+Et la même chose pour l'ours. Ensuite, je vais devoir créer une ancre. Pour le raton laveur :
+
+mindarThree.addAnchor(0)
+
+raccoon.anchor.group.add(raccoon.scene)
+
+Et pour l'ours :
+
+mindarThree.addAnchor(1)
+
+bear.anchor.group.add(bear.scene)
+
+Maintenant, il peut détecter différentes images cibles et afficher différents contenus.

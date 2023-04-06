@@ -1,0 +1,23 @@
+Poursuivant avec l'exemple de plusieurs cibles, une question qui vous vient peut-être immédiatement à l'esprit est la suivante: peut-on afficher simultanément le contenu des deux cibles ? Avant de répondre à cette question, prenons le temps de plonger dans certains algorithmes de suivi d'images derrière les moteurs de RA.
+
+À un niveau élevé, le pipeline de suivi d'images se compose de deux parties. La première partie est la détection. Cela se produit lorsque vous lancez l'application et que l'image cible n'a pas encore été localisée. Pendant cette période, le moteur extraira des points de caractéristiques dans le flux de la caméra et essaiera de trouver une correspondance dans notre base de données d'images cibles. Une fois que la cible est localisée, le moteur passera à une phase de suivi. Au lieu de chercher aveuglément, la localisation précédemment détectée nous donne une grande indication sur l'endroit où nous devrions regarder. Nous essaierons de suivre cette cible d'image en image.
+
+Supposons également que nous avons déjà détecté la première cible. Nous pouvons économiser beaucoup de travail en ignorant les autres. Comme vous pouvez l'imaginer, la détection est généralement plus intensive en calcul, car elle implique beaucoup de recherche et de correspondance. Bien que la détection prenne plus de temps pour calculer une seule image, cela ne nous dérange pas, car si nous sommes sur l'écran de détection, nous ne remarquons pas beaucoup de différence s'il faut, disons, une demi-seconde ou même une seconde pour commencer à voir l'effet.
+
+En revanche, le suivi est une toute autre histoire. Vous devez maintenir une fréquence d'images élevée pour éviter des expériences saccadées. À cet égard, la partie de détection est plus tolérante en termes de vitesse.
+
+Pour éviter des expériences saccadées à cet égard, la partie de détection est plus tolérante en termes de vitesse.
+
+En revanche, la tolérance de précision de la détection est relativement faible, en particulier pour les faux positifs. Nous ne voulons tout simplement pas faire correspondre à une cible incorrecte, tandis que dans le suivi, l'échec d'une seule image n'aura pas un impact important car nous pouvons appliquer une fonction de lissage en prenant une moyenne mobile de plusieurs images.
+
+Une autre comparaison intéressante est que l'algorithme de détection est beaucoup plus adaptable à plusieurs cibles, car il permet beaucoup de calculs à être partagés. En revanche, le suivi est plus indépendant, ce qui signifie que vous avez besoin d'un coût de calcul presque deux fois plus élevé lorsque vous suivez deux cibles simultanément.
+
+Voici quelques limites empiriques pour MindAR que j'ai testées avec des images cibles 3D dans un seul fichier dot Mind compilé sans aucun problème en termes de suivi. Je ne dépasserais probablement pas trois. Cela dépend vraiment des appareils et parfois des cibles ou même de l'environnement. Si vous devez vraiment l'essayer, je crois qu'8th Wall est probablement le meilleur kit de développement de réalité augmentée disponible sur le marché de nos jours en termes de qualité de suivi. Sur leur site web, ils affirment qu'ils peuvent gérer mille images cibles avec 10 suivis simultanés, mais personnellement, je n'ai jamais testé cette limite.
+
+D'accord, la théorie est terminée, revenons à la question initiale : pouvons-nous afficher le contenu des deux cibles simultanément dans MindAR ? La réponse est oui, et en fait, c'est très simple à faire. Il vous suffit d'ajouter un paramètre supplémentaire appelé maxTrack.
+
+Ce paramètre indique au moteur le nombre maximal de cibles qu'il doit suivre à tout moment. Fixons-le à 2 et voyons ce qui se passe.
+
+Cool, maintenant nous pouvons afficher les deux modèles en même temps. Une observation intéressante est que l'application est moins performante lorsqu'une cible est en cours de détection. La raison en est que pendant cette période, les algorithmes de détection et de suivi sont en cours d'exécution. Nous devons suivre la première cible tout en cherchant la seconde, mais lorsque la seconde cible est trouvée, la partie de détection peut maintenant prendre une pause, c'est pourquoi elle apparaîtra plus rapidement.
+
+En conclusion, lorsque vous définissez le paramètre maxTrack, ne le fixez pas plus haut que ce qui est nécessaire.

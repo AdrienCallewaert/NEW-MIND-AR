@@ -1,0 +1,59 @@
+Dans nos exemples précédents, nous avons chargé des modèles 3D dans les scènes AR.
+
+Cependant, les modèles semblent figés car ils ne bougent pas du tout. Je vais maintenant donner
+
+un court tutoriel sur l'animation de contenu 3D dans 3.js. En général, il existe deux façons d'animer
+
+des contenus 3D. La première est intrinsèque au modèle lui-même, ce qui signifie que les modèles 3D
+
+eux-mêmes contiennent des animations lorsqu'ils sont construits par des artistes 3D. Dans le format glTF, ces
+
+animations sont déjà intégrées dans le fichier glTF, elles sont donc chargées avec le modèle. Plus précisément,
+
+elles sont importées dans cette propriété glTF.animations.
+
+Pour jouer avec ces animations, nous pouvons utiliser la classe de mixeur d'animation 3js. Nous faisons cela en
+
+créant une constante mixer égale à new 3 dot animation mixer et en passant le
+
+modèle, puis nous créerons action mixer.clip action gltf.animation0.
+
+Un modèle 3D peut contenir plusieurs animations, donc ces animations ici sont une liste et ici
+
+nous créons un clip d'action jouable en utilisant la première animation, puis nous pouvons commencer à la lire.
+
+Cependant, si vous exécutez l'application maintenant, vous ne verrez rien être animé
+
+parce que cette classe de mixeur est un peu difficile à manipuler, vous devez appeler mixer.update à chaque frame.
+
+Cette mise à jour nécessite également une entrée supplémentaire qui est le temps écoulé
+
+depuis la dernière mise à jour, afin que le mixeur sache combien avancer dans la chronologie de l'animation.
+
+Nous utiliserons généralement une classe auxiliaire trois dot clock pour aider à gérer le temps.
+
+Ensuite, nous ferons delta equals clock dot delta ici à l'intérieur de la boucle de rendu, donc cette delta
+
+est le temps écoulé depuis la dernière fois que nous avons appelé cette fonction get delta, puis nous pouvons
+
+passer cette delta au mixer.update. Voyons maintenant ce qui se passe.
+
+Maintenant, vous pouvez voir que l'animation du modèle est en cours de lecture.
+
+Une autre façon d'animer des contenus 3D est extrinsèque au modèle, ce qui signifie essentiellement que nous allons écrire
+
+un code externe pour modifier les propriétés du modèle en continu pour chaque frame, puisque nous devons faire une mise à jour
+
+à chaque frame, il est fort probable que nous mettions également ces morceaux de code à l'intérieur de cette boucle de rendu
+
+juste pour donner un exemple rapide, nous pouvons, par exemple, faire quelque chose comme gltf.scene
+
+dot rotation.set 0 gltf.scene dot rotation dot y plus delta 0
+
+pour faire tourner le modèle en continu. Voyons ça.
+
+Il existe de nombreuses propriétés avec lesquelles vous pouvez jouer, en plus de la rotation,
+
+y compris, mais sans s'y limiter, la position, l'échelle et l'opacité. De nombreux effets intéressants peuvent être
+
+créés de cette manière, même si vous n'avez aucun contrôle sur les animations intégrées au modèle.
