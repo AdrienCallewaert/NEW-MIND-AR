@@ -5,15 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const start = async() => {
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
             container: document.body,
-            imageTargetSrc: './assets/applications/assets/targets/musicband.mind',
+            imageTargetSrc: './assets/applications/assets/targets/EHMOCK.mind',
         });
         const { renderer, scene, camera } = mindarThree;
 
         const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         scene.add(light);
 
-        const gltf = await loadGLTF('./assets/applications/assets/models/musicband-raccoon/scene.gltf');
-        gltf.scene.scale.set(0.1, 0.1, 0.1);
+
+        // const gltf = await loadGLTF('./assets/applications/assets/models/musicband-raccoon/scene.gltf');
+        const gltf = await loadGLTF('./assets/applications/assets/models/stilizedplane/scene.gltf');
+        gltf.scene.scale.set(1, 1, 1);
         gltf.scene.position.set(0, -0.4, 0);
 
         const anchor = mindarThree.addAnchor(0);
